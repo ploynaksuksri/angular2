@@ -12,22 +12,30 @@ export class UserService{
     this._url = urls.users;
   }
 
-  getUsers():Observable<IUser[]>{
+  getUsers():Observable<User[]>{
     return this._http.get(this._url)
       .map(res => res.json());
   }
 
-  
+  getUser(id:number):Observable<User>{
+    return this._http.get(this._url + '/' + id)
+      .map(res => res.json());
+  }
+
+  updateUser(user:User){
+    
+  }
+
 }
 
 
-export interface IUser{
-  id: number,
-  name: string,
-  username: string,
-  email: string,
-  address:any,
-  phone:string,
-  website:string,
-  company:any
+export class User{
+  id: number;
+  name: string;
+  username: string;
+  email: string;
+  address:any;
+  phone:string;
+  website:string;
+  company:any;
 }
